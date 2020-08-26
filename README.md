@@ -1,0 +1,2 @@
+# basicConfigParser
+A basic config parser used to read basic key=value configuration files
