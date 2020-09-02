@@ -5,8 +5,15 @@ const configController = require("../controllers/configController");
 const router = express.Router();
 
 // route for getting specific config values
-router.get("/value", configController.getConfigValue, (req, res) =>
-  res.status(200).json(res.locals)
+router.get(
+  "/value",
+  configController.getConfigValues,
+  configController.parseConfigValues,
+  configController.makeConfigObj,
+  (req, res) => {
+    console.log("server location: ", res.locals.configObj);
+    res.status(200).json(res.locals.converted);
+  }
 );
 
 // route for importing a new config file
