@@ -10,9 +10,10 @@ router.get(
   configController.getConfigValues,
   configController.parseConfigValues,
   configController.makeConfigObj,
+  configController.returnValue,
   (req, res) => {
     console.log("server location: ", res.locals.configObj);
-    res.status(200).json(res.locals.converted);
+    res.status(200).json(res.locals.returnValue);
   }
 );
 
