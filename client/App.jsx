@@ -17,8 +17,8 @@ const App = props => {
               https://reacttraining.com/react-router/web/guides/quick-start
         */}
         <Switch>
-          <Route exact path="/" component={Characters} />
-          <Route exact path="/create" component={CreateCharacter} />
+          {/* <Route exact path="/" component={Characters} />
+          <Route exact path="/create" component={CreateCharacter} /> */}
         </Switch>
       </main>
     </div>

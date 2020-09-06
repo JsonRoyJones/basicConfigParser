@@ -86,7 +86,8 @@ configController.makeConfigObj = (req, res, next) => {
 };
 
 configController.returnValue = (req, res, next) => {
-  const { reqVal } = req.body;
+  const reqVal = req.body.item;
+  console.log("reqVal: ", res.locals.configObj[reqVal]);
   res.locals.returnValue = res.locals.configObj[reqVal];
   console.log("Returning this value:  ", res.locals.returnValue);
 
