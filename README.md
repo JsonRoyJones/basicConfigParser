@@ -20,16 +20,16 @@ A basic config parser used to read basic key=value configuration files
 
 # Example of Valid Config File
 
-Valid config file:
-/# This is what a comment looks like, ignore it
-/ #All these config lines are valid
-host = test.com
-server_id=55331
-server_load_alarm=2.5
-user= user
-/ #comment can appear here as well
-verbose =true
-test_mode = on
-debug_mode = off
-log_file_path = /tmp/logfile.log
-send_notifications = yes
+Valid config file: <br />
+/# This is what a comment looks like, ignore it <br />
+/ #All these config lines are valid <br />
+host = test.com <br />
+server_id=55331 <br />
+server_load_alarm=2.5 <br />
+user= user <br />
+/ #comment can appear here as well <br />
+verbose =true <br />
+test_mode = on <br />
+debug_mode = off <br />
+log_file_path = /tmp/logfile.log <br />
+send_notifications = yes <br />
