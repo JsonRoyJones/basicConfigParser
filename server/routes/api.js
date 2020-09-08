@@ -1,26 +1,24 @@
 const express = require("express");
 
-// const starWarsController = require('../controllers/starWarsController');
+const configController = require("../controllers/configController");
 
 const router = express.Router();
 
-router.get("/", starWarsController.getCharacters, (req, res) =>
-  res.status(200).json(res.locals)
+// route for getting specific config values
+router.get(
+  "/value",
+  configController.getConfigValues,
+  configController.parseConfigValues,
+  configController.makeConfigObj,
+  configController.returnValue,
+  (req, res) => {
+    console.log("server location: ", res.locals.configObj);
+    res.status(200).json(res.locals.returnValue);
+  }
 );
 
-router.get("/species", starWarsController.getSpecies, (req, res) =>
-  res.status(200).json(res.locals)
-);
-
-router.get("/homeworld", starWarsController.getHomeworld, (req, res) =>
-  res.status(200).json(res.locals)
-);
-
-router.get("/film", starWarsController.getFilm, (req, res) =>
-  res.status(200).json(res.locals)
-);
-
-router.post("/character", starWarsController.addCharacter, (req, res) =>
+// route for importing a new config file
+router.post("/import", configController.addConfigFile, (req, res) =>
   res.status(200).json(req.body)
 );
 
