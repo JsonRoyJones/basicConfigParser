@@ -5,7 +5,7 @@ const configController = require("../controllers/configController");
 const router = express.Router();
 
 // route for getting specific config values
-router.get(
+router.post(
   "/value",
   configController.getConfigValues,
   configController.parseConfigValues,
@@ -13,6 +13,7 @@ router.get(
   configController.returnValue,
   (req, res) => {
     console.log("server location: ", res.locals.configObj);
+    console.log("logging return value: ", res.locals.returnValue);
     res.status(200).json(res.locals.returnValue);
   }
 );
