@@ -41,41 +41,35 @@ configController.makeConfigObj = (req, res, next) => {
       const splitEl = el.split("=");
       // convert the strings to proper data types
       // check to see if string of value is 'true / false', 'on / off', 'yes / no' -> convert to boolean
-      // split further to remove whitespace
-      // check key string for whitespace and remove any extras
-      const keySplit = splitEl[0]
-        .split("")
-        .filter(el => el !== " " && el !== "");
-      splitEl[0] = keySplit.join("");
-      const secondSplit = splitEl[1].split(" ");
+      // trim to remove whitespace
+      const keySplit = splitEl[0].trim();
+      const valueSplit = splitEl[1].trim();
       if (
-        secondSplit.includes("true") ||
-        secondSplit.includes("yes") ||
-        secondSplit.includes("on")
+        valueSplit === "true" ||
+        valueSplit === "yes" ||
+        valueSplit === "on"
       ) {
         splitEl[1] = true;
         console.log("this should be TRUE: ", splitEl[1]);
       } else if (
-        secondSplit.includes("false") ||
-        secondSplit.includes("no") ||
-        secondSplit.includes("off")
+        valueSplit === "false" ||
+        valueSplit === "no" ||
+        valueSplit === "off"
       ) {
         splitEl[1] = false;
         console.log("this should be FALSE: ", splitEl[1]);
       } else {
-        const filteredSplit = secondSplit.filter(el => el !== " " && el !== "");
-        let numCheck = filteredSplit[0];
+        let numCheck = valueSplit;
         if ((numCheck *= 1 !== "NaN")) {
           // convert to number
           splitEl[1] = numCheck;
         } else {
           // do no conversion and simply store string
-          splitEl[1] = filteredSplit[0];
+          splitEl[1] = valueSplit;
         }
       }
-      // TODO: store the string (use regex to remove white space)
       // store the keys and values at configObj
-      configObj[splitEl[0]] = splitEl[1];
+      configObj[keySplit] = splitEl[1];
     }
   });
 

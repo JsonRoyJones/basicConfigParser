@@ -25,7 +25,7 @@
   async function requestVal() {
       const inputKey = document.getElementById('key-val');
       const payload = {
-        item: inputKey.value
+        item: inputKey.value.trim()
       };
       console.log(payload);
       const response = await fetch('/api/value', {
