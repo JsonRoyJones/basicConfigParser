@@ -18,6 +18,8 @@
       <textarea id='return-value-text' placeholder="Value will be displayed here after submission">
       </textarea>
     </div><!--closing return value div-->
+    <form action="/upload" id="upload-form">
+    </form> <!--closing form for uploading file-->
     <div id="app"></div> <!--React App div-->
   </body>
   <script>
@@ -41,6 +43,35 @@
     }
     const inputButton = document.getElementById('request-val');
     inputButton.addEventListener('click', requestVal);
-    
+  const uploadForm = document.getElementById('upload-form');
+  let x = document.createElement("INPUT");
+  x.setAttribute("type", "file");
+  x.setAttribute("id", "file-select");
+  x.setAttribute("required", "true");
+  x.setAttribute("multiple", "false");
+  uploadForm.appendChild(x);
+  let uploadSubmit = document.createElement('INPUT');
+  uploadSubmit.setAttribute('id', 'upload-submit')
+  uploadSubmit.setAttribute('type', 'submit');
+  uploadSubmit.setAttribute('value', 'Upload Chosen File');
+  uploadForm.appendChild(uploadSubmit);
+  
+  async function uploadFile() {
+      const uploadElement = document.getElementById('upl');
+      const payload = {
+        item: inputKey.value.trim()
+      };
+      console.log(payload);
+      const response = await fetch('/api/value', {
+        headers: { 'content-type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify(payload),
+        method: 'POST'
+      })
+      returnVal.value = await response.json()
+      console.log(returnVal.value)
+      console.log('Key: ', inputKey.value.toString());
+      console.log('returned value: ', returnVal.value)
+      
+    }
     </script>
 </html>
